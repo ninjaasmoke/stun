@@ -1,4 +1,4 @@
-# istriwaala2
+# Laundry App
 
 A new Flutter application.
 
