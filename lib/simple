@@ -1,0 +1,424 @@
+FutureBuilder<FirebaseUser>(
+        future: FirebaseAuth.instance.currentUser(),
+        builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
+          if(snapshot.hasData) {
+            return Builder(
+              builder: (context) => Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 0, 15, 0),
+                child: SingleChildScrollView(
+                  child: Center(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(height: 100,
+                      ),
+                      ShowUp(
+                        child: Text("Welcome back to Istriwaala!!!", style: TextStyle(color: Colors.white, fontSize: 30)),
+                        delay: 500,
+                      ),
+                      SizedBox(height: 20,),
+                      ShowUp(
+                        child: Text("Rely on us to take care of your clothes!", style: TextStyle(color: Colors.white, fontSize: 20)),
+                        delay: 1000,
+                      ),
+                      SizedBox(height: 20,),
+                      ShowUp(
+                        child: Text("How can we help you today?", style: TextStyle(color: Colors.white, fontSize: 20)),
+                        delay: 1500,
+                      ),
+                      SizedBox(height: 50,),
+                      ShowUp(
+                        delay: 2000,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            color: Colors.amber,
+                            height: 50,
+                            width: 300,
+                            child: Center(
+                              child: GestureDetector(
+                                onTap: () {
+                                  _signIn(context);
+                                },
+                                child: Text("Enter Istriwaala",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.bold
+                                ),),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
+                ),
+              ),
+            );
+          }
+          else
+          return
+
+
+
+
+
+
+
+
+
+showAlertDialog(BuildContext context) {
+                    Widget cancelButton = FlatButton(
+                      child: Text("Cancel"),
+                      onPressed: () {},
+                    );
+                    Widget continueButton = FlatButton(
+                      child: Text("Sign Out"),
+                      onPressed: () {
+                        _gSignIn.signOut().catchError((error) => print(error));
+                        print('Signed out');
+                        Navigator.pushReplacement(
+                          context,
+                          CupertinoPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                    );
+
+                    AlertDialog alert = AlertDialog(
+                      title: Text("Sign Out"),
+                      content: Text("Are you sure you want to sign out?"),
+                      actions: <Widget>[continueButton, cancelButton],
+                    );
+
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return alert;
+                      },
+                    );
+                  }
+
+
+
+
+
+
+                from settings
+CupertinoButton(
+                onPressed: () {},
+                child: Text(
+                 "Text",
+                  style: TextStyle(
+                    fontFamily: 'sousan',
+                    fontSize: 28.0,
+                    color: Colors.grey[200],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10.0,),
+              CupertinoButton(
+                onPressed: () {},
+                child: Text("Clear Recents",
+                  style: TextStyle(
+                    fontFamily: 'nsan',
+                    fontSize: 18.0,
+                    color: Colors.grey[200],
+                  ),
+                ),
+              ),
+
+
+
+
+
+
+
+
+
+
+from login page
+
+ Row(
+                    children: <Widget>[
+                      SizedBox(width: 20,),
+                      ShowUp(
+                        delay: 2600,
+                        child: Text("Try",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      ),
+                      SizedBox(width: 20,),
+                      Text("Istriwaala",
+                        style: TextStyle(
+                          fontSize: 50,
+                          color: Colors.red[600],
+                        ),
+                      )
+                    ],
+                  ),
+
+
+
+
+                  
+
+
+
+
+ from LoginPage for checckimg connection
+
+  var connectivityResult = await (Connectivity().checkConnectivity()); 
+                                      if (connectivityResult == ConnectivityResult.none) {
+                                        showDialog(context: context,
+                                        builder: (_) => AlertDialog(
+                                          backgroundColor: Colors.grey[900],
+                                          title: Text("No internet connection",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold
+                                           ),
+                                          ),
+                                          content: Text("You are not connected to the internet. Check your connection and try again",
+                                                                        style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14)),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Cancel",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),)
+                                    ),
+                                    FlatButton(
+                                      onPressed: () {
+                                        AppSettings.openDateSettings();
+                                      },
+                                      child: Text("Go to Network Settings",
+                                      style: TextStyle(color: Colors.red),)
+                                    ),
+                                  ],
+                                        ));
+                                      }         
+
+
+
+
+
+ from splash screen
+ for silent login
+  StreamBuilder<FirebaseUser>(
+      stream: FirebaseAuth.instance.onAuthStateChanged,
+      builder: (BuildContext context, snapshot) {
+        if (snapshot.hasData) {
+          return MainScreen(detailsUser: snapshot.data);
+        }
+        else {
+          return LoginPage();
+        }
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+Scaffold(
+      backgroundColor: Colors.black,
+      body: Builder(
+        builder: (context) => Padding(
+          padding: const EdgeInsets.fromLTRB(15.0, 0, 15, 0),
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 100,
+                  ),
+                  ShowUp(
+                    child: Text(
+                      "Hi there,",
+                      style: TextStyle(
+                          fontSize: 40, color: Colors.amber.withOpacity(0.8)),
+                    ),
+                    delay: dela,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ShowUp(
+                    child: Text(
+                      "Are you tired of Searching for people who can wash, darn, iron and dry clean your clothes?",
+                      style: TextStyle(fontSize: 24, color: Colors.white),
+                    ),
+                    delay: dela + 400,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ShowUp(
+                    child: Text(
+                      "Not sure who is the best person to get the job done?",
+                      style: TextStyle(fontSize: 24, color: Colors.white),
+                    ),
+                    delay: dela+800,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ShowUp(
+                    child: RichText(
+                        text: TextSpan(children: <TextSpan>[
+                      TextSpan(
+                          text: "Try",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          )),
+                      TextSpan(
+                          text: " Istriwaala",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 50,
+                          )),
+                    ])),
+                    delay: dela+1200,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ShowUp(
+                    child: Text(
+                      "We will help you find the right place...",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    delay: dela+1600,
+                  ),
+                  SizedBox(
+                    height: 100,
+                  ),
+                  ShowUp(
+                    delay: dela+2000,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        color: Colors.white.withOpacity(0.15),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Center(
+                                child: Container(
+                                  child: Text(
+                                    "Welcome",
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 30),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    try{
+                                      final result = await InternetAddress.lookup('google.com');
+                                      if(result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+                                         _signIn(context)
+                                      .then((FirebaseUser user) => print(user))
+                                      .catchError((e) => print(e));
+                                      }
+                                    }on SocketException catch (_) {
+                                      showDialog(context: context,
+                                        builder: (_) => AlertDialog(
+                                          contentPadding: EdgeInsets.fromLTRB(23,28,28,28),
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                          elevation: 10,
+                                          backgroundColor: Colors.grey[900],
+                                          title: Text("No internet connection",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold
+                                           ),
+                                          ),
+                                          content: Text("You are not connected to the internet.\n\nCheck your connection and try again",
+                                          style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14)),
+                                          actions: <Widget>[
+                                           FlatButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Cancel",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),)
+                                    ),
+                                    FlatButton(
+                                      onPressed: () {
+                                        AppSettings.openDataRoamingSettings();
+                                      },
+                                      child: Text("Network Settings",
+                                      style: TextStyle(color: Colors.red),)
+                                    ),
+                                  ],
+                                        ));
+                                    }
+
+                                  },
+                                  child: Container(
+                                    width: 210,
+                                    height: 50,
+                                    color: Colors.white,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        CircleAvatar(
+                                          child: Image.asset(
+                                              'Assets/google-logo.png'),
+                                          backgroundColor: Colors.white,
+                                          radius: 10,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text("Continue with Google"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );                                         

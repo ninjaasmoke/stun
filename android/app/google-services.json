@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "613274229180",
+    "firebase_url": "https://istriwaala-c332e.firebaseio.com",
+    "project_id": "istriwaala-c332e",
+    "storage_bucket": "istriwaala-c332e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613274229180:android:5e9946cf75db1b6a49b3b9",
+        "android_client_info": {
+          "package_name": "com.example.istriwaala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613274229180-d81u870a7uo9rmdk1kse271fdih175bs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT7dmq1N4gLzbWtK6QYGFkphXujbluohY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613274229180-d81u870a7uo9rmdk1kse271fdih175bs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613274229180:android:bde042a784056fa049b3b9",
+        "android_client_info": {
+          "package_name": "com.example.istriwaala2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613274229180-d81u870a7uo9rmdk1kse271fdih175bs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT7dmq1N4gLzbWtK6QYGFkphXujbluohY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613274229180-d81u870a7uo9rmdk1kse271fdih175bs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
