@@ -24,6 +24,7 @@ class _MainScreenState extends State<MainScreen> {
           "ISTRIWAALA",
           style: TextStyle(
             fontSize: 20.0,
+            letterSpacing: 2,
             fontWeight: FontWeight.w500,
             color: Colors.grey[200],
           ),

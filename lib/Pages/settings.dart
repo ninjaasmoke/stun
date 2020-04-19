@@ -61,6 +61,7 @@ class _SettingsState extends State<Settings> {
               Center(
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(photoUrl),
+                  backgroundColor: Color(0xff111111),
                   radius: 80,
                 ),
               ),
