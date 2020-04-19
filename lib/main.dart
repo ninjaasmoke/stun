@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'splash.dart';
+import 'Anim/splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main () async {

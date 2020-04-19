@@ -1,7 +1,7 @@
 import 'package:splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
-import 'loginpage.dart';
-import 'mainscreen.dart';
+import '../Pages/loginpage.dart';
+import '../Pages/mainscreen.dart';
 
 class Id extends StatefulWidget {
   final bool login;
