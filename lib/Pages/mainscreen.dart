@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:istriwaala2/Anim/showup.dart';
+import 'package:istriwaala2/Pages/search.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:istriwaala2/Pages/settings.dart';
 
@@ -10,8 +11,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,29 +100,31 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
               FlatButton.icon(
-                  onPressed: () async {
-                    SharedPreferences prefs = await SharedPreferences.getInstance();
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            fullscreenDialog: true,
-                            builder: (context) => Settings(
-                name:  prefs.getString('userName'),
-                photoUrl: prefs.getString('userPhoto'),
-                email: prefs.getString('userEmail'),)));
-                  },
-                  icon: Icon(
-                    Icons.settings,
-                    color: Colors.grey[200],
-                  ),
-                  label: Text(
-                    "Settings",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.grey[300],
-                    ),
+                onPressed: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          fullscreenDialog: true,
+                          builder: (context) => Settings(
+                                name: prefs.getString('userName'),
+                                photoUrl: prefs.getString('userPhoto'),
+                                email: prefs.getString('userEmail'),
+                              )));
+                },
+                icon: Icon(
+                  Icons.settings,
+                  color: Colors.grey[200],
+                ),
+                label: Text(
+                  "Settings",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.grey[300],
                   ),
                 ),
+              ),
             ],
           ),
         ),
@@ -178,7 +179,19 @@ class _MainScreenState extends State<MainScreen> {
                       Icons.pin_drop,
                     ),
                     color: Colors.red[600],
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (BuildContext context) => SearchService(
+                                    appBarColor: Colors.red[600],
+                                    serviceName: 'Ironing',
+                                    serviceIcon: Icon(
+                                      Icons.pin_drop,
+                                    ),
+                                  ),
+                              fullscreenDialog: true));
+                    },
                     label: Text(
                       "Ironing",
                       style: TextStyle(
@@ -206,7 +219,19 @@ class _MainScreenState extends State<MainScreen> {
                       Icons.local_laundry_service,
                     ),
                     color: Colors.green[500],
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (BuildContext context) => SearchService(
+                                    appBarColor: Colors.green[500],
+                                    serviceName: 'Dry Cleaning',
+                                    serviceIcon: Icon(
+                                      Icons.local_laundry_service,
+                                    ),
+                                  ),
+                              fullscreenDialog: true));
+                    },
                     label: Text(
                       "Dry Cleaning",
                       style: TextStyle(
@@ -234,7 +259,19 @@ class _MainScreenState extends State<MainScreen> {
                       Icons.transfer_within_a_station,
                     ),
                     color: Colors.blue[400],
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (BuildContext context) => SearchService(
+                                    appBarColor: Colors.blue[400],
+                                    serviceName: 'Washing',
+                                    serviceIcon: Icon(
+                                      Icons.transfer_within_a_station,
+                                    ),
+                                  ),
+                              fullscreenDialog: true));
+                    },
                     label: Text(
                       "Washing",
                       style: TextStyle(
@@ -262,7 +299,19 @@ class _MainScreenState extends State<MainScreen> {
                       Icons.content_cut,
                     ),
                     color: Colors.orange[300],
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (BuildContext context) => SearchService(
+                                    appBarColor: Colors.orange[300],
+                                    serviceName: 'Darning',
+                                    serviceIcon: Icon(
+                                      Icons.content_cut,
+                                    ),
+                                  ),
+                              fullscreenDialog: true));
+                    },
                     label: Text(
                       "Darning",
                       style: TextStyle(
