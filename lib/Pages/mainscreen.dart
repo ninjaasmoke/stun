@@ -43,12 +43,13 @@ class _MainScreenState extends State<MainScreen> {
                 height: 260,
                 width: 260,
                 child: CircleAvatar(
+                  backgroundColor: Color(0xff121212),
                   backgroundImage: AssetImage('Assets/istri6.png'),
                   radius: 75,
                 ),
                 alignment: Alignment.center,
               ),
-              FlatButton(
+              Center(
                 child: Text(
                   "      Hey, dear\nIstriwaala user",
                   style: TextStyle(fontSize: 20, color: Colors.white),
