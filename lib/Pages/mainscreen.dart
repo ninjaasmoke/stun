@@ -4,6 +4,7 @@ import 'package:istriwaala2/Anim/showup.dart';
 import 'package:istriwaala2/Pages/search.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:istriwaala2/Pages/settings.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -141,15 +142,24 @@ class _MainScreenState extends State<MainScreen> {
                 child: Container(
                   height: 200.0,
                   width: 600.0,
-//                  child: Carousel(
-//                    animationDuration: Duration(milliseconds: 2000),
-//                    showIndicator: false,
-//                    dotSize: 0.0,
-//                    images: [
-//                      //AssetImage('assets/kleider.jpg'),
-//                      //AssetImage('assets/clem.jpg'),
-//                    ],
-//                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Container(
+                      height: 200.0,
+                      width: 600.0,
+                      child: Carousel(
+                        autoplayDuration: Duration(seconds: 10),
+                        animationDuration: Duration(seconds: 5),
+                        showIndicator: false,
+                        dotSize: 0.0,
+                        boxFit: BoxFit.cover,
+                        images: [
+                          AssetImage('assets/kleider.jpg'),
+                          AssetImage('assets/clem.jpg'),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(
