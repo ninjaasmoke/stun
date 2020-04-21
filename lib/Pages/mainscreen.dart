@@ -148,14 +148,13 @@ class _MainScreenState extends State<MainScreen> {
                       height: 200.0,
                       width: 600.0,
                       child: Carousel(
-                        autoplayDuration: Duration(seconds: 10),
+                        autoplayDuration: Duration(seconds: 30),
                         animationDuration: Duration(seconds: 5),
                         showIndicator: false,
-                        dotSize: 0.0,
                         boxFit: BoxFit.cover,
                         images: [
-                          AssetImage('assets/kleider.jpg'),
-                          AssetImage('assets/clem.jpg'),
+                          AssetImage('Assets/clem.jpg'),
+                          AssetImage('Assets/kleider.jpg'),
                         ],
                       ),
                     ),

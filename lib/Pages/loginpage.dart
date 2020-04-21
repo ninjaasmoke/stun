@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:istriwaala2/Utils/firsttime.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'mainscreen.dart';
 import 'package:istriwaala2/Anim/showup.dart';
@@ -10,14 +11,11 @@ import 'dart:io';
 import 'package:app_settings/app_settings.dart';
 
 class LoginPage extends StatefulWidget {
- 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-
   int dela = 700;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -39,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
 
     FirebaseUser userDetails =
         (await _firebaseAuth.signInWithCredential(credential)).user;
-        
+
     ProviderDetails providerInfo = new ProviderDetails(userDetails.providerId);
 
     List<ProviderDetails> providerData = List<ProviderDetails>();
@@ -54,18 +52,17 @@ class _LoginPageState extends State<LoginPage> {
     //     providerData);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('login', true); 
-    prefs.setString('userEmail', userDetails.email); 
+    prefs.setBool('login', true);
+    prefs.setString('userEmail', userDetails.email);
     prefs.setString('userName', userDetails.displayName);
     prefs.setString('userPhoto', userDetails.photoUrl);
     prefs.setBool('login', true);
-    
+    var firstTime = prefs.getBool('firstTime');
 
     Navigator.pushReplacement(
       context,
       CupertinoPageRoute(
-          fullscreenDialog: true,
-          builder: (context) => MainScreen()),
+          fullscreenDialog: true, builder: (context) => firstTime == null || firstTime == true? FirstScreen(): MainScreen()),
     );
     return userDetails;
   }
@@ -111,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                       "Not sure who is the best person to get the job done?",
                       style: TextStyle(fontSize: 24, color: Colors.white),
                     ),
-                    delay: dela+800,
+                    delay: dela + 800,
                   ),
                   SizedBox(
                     height: 20,
@@ -132,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 50,
                           )),
                     ])),
-                    delay: dela+1200,
+                    delay: dela + 1200,
                   ),
                   SizedBox(
                     height: 20,
@@ -142,18 +139,19 @@ class _LoginPageState extends State<LoginPage> {
                       "We will help you find the right place...",
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
-                    delay: dela+1600,
+                    delay: dela + 1600,
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 150,
                   ),
                   ShowUp(
-                    delay: dela+2000,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        color: Colors.white.withOpacity(0.15),
-                        child: SingleChildScrollView(
+                    delay: dela + 2000,
+                    child: Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width* .9,
+                          color: Colors.grey[900],
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -177,52 +175,68 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(30),
                                 child: GestureDetector(
                                   onTap: () async {
-                                    try{
-                                      final result = await InternetAddress.lookup('google.com');
-                                        if(result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-                                         _signIn(context)
-                                      .then((FirebaseUser user) => print(user))
-                                      .catchError((e) => print(e));
+                                    try {
+                                      final result =
+                                          await InternetAddress.lookup(
+                                              'google.com');
+                                      if (result.isNotEmpty &&
+                                          result[0].rawAddress.isNotEmpty) {
+                                        _signIn(context)
+                                            .then((FirebaseUser user) =>
+                                                print(user))
+                                            .catchError((e) => print(e));
                                       }
-                                    }on SocketException catch (_) {
-                                      showDialog(context: context,
-                                        builder: (_) => AlertDialog(
-                                          contentPadding: EdgeInsets.fromLTRB(23,28,28,28),
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                                          elevation: 10,
-                                          backgroundColor: Colors.grey[900],
-                                          title: Text("Not Connected",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold
-                                           ),
-                                          ),
-                                          content: Text("You are not connected to the internet.\n\nCheck your connection and try again",
-                                          style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14)),
-                                          actions: <Widget>[
-                                           FlatButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text("Cancel",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),)
-                                    ),
-                                    FlatButton(
-                                      onPressed: () {
-                                        AppSettings.openDataRoamingSettings();
-                                      },
-                                      child: Text("Network Settings",
-                                      style: TextStyle(color: Colors.red),)
-                                    ),
-                                  ],
-                                        ));
+                                    } on SocketException catch (_) {
+                                      showDialog(
+                                          context: context,
+                                          builder: (_) => AlertDialog(
+                                                contentPadding:
+                                                    EdgeInsets.fromLTRB(
+                                                        23, 28, 28, 28),
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                elevation: 10,
+                                                backgroundColor:
+                                                    Colors.grey[900],
+                                                title: Text(
+                                                  "Not Connected",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                content: Text(
+                                                    "You are not connected to the internet.\n\nCheck your connection and try again",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 14)),
+                                                actions: <Widget>[
+                                                  FlatButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: Text(
+                                                        "Cancel",
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                        ),
+                                                      )),
+                                                  FlatButton(
+                                                      onPressed: () {
+                                                        AppSettings
+                                                            .openDataRoamingSettings();
+                                                      },
+                                                      child: Text(
+                                                        "Network Settings",
+                                                        style: TextStyle(
+                                                            color: Colors.red),
+                                                      )),
+                                                ],
+                                              ));
                                     }
-
                                   },
                                   child: Container(
                                     width: 210,
@@ -239,7 +253,7 @@ class _LoginPageState extends State<LoginPage> {
                                           radius: 10,
                                         ),
                                         SizedBox(width: 10),
-                                        Text("Continue with Google"),
+                                        Text("Sign-in with Google"),
                                       ],
                                     ),
                                   ),
